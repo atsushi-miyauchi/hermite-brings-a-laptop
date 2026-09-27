@@ -1,14 +1,8 @@
-# Certification code
+# Code for the Hermite-Coefficient Certification Framework 
 
 The code is organized to mirror the manuscript's current section structure.
-The expensive Hermite-coefficient certification is performed once, independently
-of any application, and the application-specific programs consume the resulting
-exact rational coefficient data.
-
-This package contains only the code needed to generate and verify the rigorous
-certificates used in the manuscript.  Exploratory code for numerically
-estimating MaxAgree[K] mixtures, together with its diagnostic CSV outputs, is
-not included.
+The Hermite-coefficient certification is performed once, independently of any application, 
+and the application-specific programs consume the resulting exact rational coefficient data.
 
 ## 1. Section 3: generate Hermite coefficient bounds once
 
