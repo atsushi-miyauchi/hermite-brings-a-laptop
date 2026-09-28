@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the exact Section 4 application certificate checks used in the manuscript."""
+"""Run the exact application and noise-stability checks in Sections 4 and 5."""
 
 from __future__ import annotations
 
@@ -56,7 +56,8 @@ def main() -> int:
 
     run(str(ROOT / "modularity" / "verify.py"), "--quiet")
     run(str(ROOT / "modularity_limitation" / "verify.py"), "--quiet")
-    print("All Section 4 application certificate checks passed.")
+    run(str(ROOT / "noise_stability" / "certify_gaussian_maxagree_bound.py"), "--quiet")
+    print("All Section 4 and 5 certificate checks passed.")
     return 0
 
 

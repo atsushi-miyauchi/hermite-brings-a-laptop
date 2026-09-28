@@ -92,13 +92,32 @@ python modularity_limitation/verify.py --target-value 0.3785
 This uses `M=24` and checks the common witness `x=4/5` for spokes
 `k=1,...,32`.
 
-To run all exact application checks corresponding to Section 4:
+To run all exact application and noise-stability checks from Sections 4 and 5:
 
 ```bash
 python verify_all.py
 ```
 
-## 3. Section 6: edge-wise upper-bound certificates
+## 3. Section 5.4.3: quadratic bound on noise stability
+
+```bash
+python noise_stability/certify_gaussian_maxagree_bound.py
+```
+
+This verifies the numerical inequalities in the proof of
+`Lambda_{3/4}(p) <= (3/4)*p^2 + (453/1000)*p` for all `p` in `[0,1]`,
+where `Lambda_rho(p)` is the probability that a pair of rho-correlated
+standard Gaussians both lie below `Phi^{-1}(p)`. The bound is used in the
+MaxAgree integrality-gap construction with limiting ratio at most `0.802`.
+
+The script uses exact rational intervals, alternating Taylor series, and
+Machin's formula for pi to certify the two tangent inequalities at
+`r=56/65`, using the proof's Jensen lower bound. The analytic argument in
+Section 5.4.3 extends these checks to the whole interval. It prints the
+certified enclosures and `PASS`, and requires only the Python standard
+library, with no Hermite coefficient files.
+
+## 4. Section 6: edge-wise upper-bound certificates
 
 The LP certificate generators also load the same reusable Hermite coefficient
 JSON files rather than regenerating them.
@@ -132,6 +151,7 @@ relative path and SHA-256 hash.
 
 - Section 3 Hermite coefficient generation: `python-flint`.
 - Section 4 exact application verifiers: Python standard library only.
+- Section 5 noise-stability verifier: Python standard library only.
 - Section 6 certificate generation: `numpy`, `scipy`; MaxAgree with hyperplane
   roundings also uses `python-flint` for certified hyperplane probability
   bounds.
